@@ -4,6 +4,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Fjord Travel",
   description: "Book your ferry departure",
+  icons: {
+    icon: "data:,", 
+  },
 };
 
 export default function RootLayout({
