@@ -1,35 +1,47 @@
-import { Departure } from "./types";
-import { v4 as uuidv4 } from "uuid";
-
 const baseSchedule = [
   {
     from: "Bergen", to: "Stavanger",
     slots: [
-      { dep: "07:00", arr: "11:30", dur: 270, price: 549 },
-      { dep: "12:00", arr: "16:30", dur: 270, price: 649 },
-      { dep: "17:30", arr: "22:00", dur: 270, price: 499 },
+      { dep: "07:00", arr: "11:30", dur: 270, price: 549, seats: 42 },
+      { dep: "12:00", arr: "16:30", dur: 270, price: 649, seats: 18 },
+      { dep: "17:30", arr: "22:00", dur: 270, price: 499, seats: 67 },
+    ],
+    operator: "Fjord Line",
+  },
+  {
+    from: "Stavanger", to: "Bergen",
+    slots: [
+      { dep: "08:00", arr: "12:30", dur: 270, price: 549, seats: 55 },
+      { dep: "13:00", arr: "17:30", dur: 270, price: 649, seats: 23 },
+      { dep: "18:30", arr: "23:00", dur: 270, price: 499, seats: 31 },
     ],
     operator: "Fjord Line",
   },
   {
     from: "Bergen", to: "Hirtshals",
     slots: [
-      { dep: "14:00", arr: "05:00+1", dur: 900, price: 1299 },
+      { dep: "14:00", arr: "05:00", dur: 900, price: 1299, seats: 88 },
     ],
     operator: "Fjord Line",
   },
-  // Add reverse routes too: Stavanger→Bergen, Hirtshals→Bergen
+  {
+    from: "Hirtshals", to: "Bergen",
+    slots: [
+      { dep: "16:00", arr: "07:00", dur: 900, price: 1299, seats: 74 },
+    ],
+    operator: "Fjord Line",
+  },
 ];
 
-export function getDepartures(from: string, to: string, date: string): Departure[] {
+export function getDepartures(from: string, to: string, date: string) {
   const route = baseSchedule.find(
     r => r.from.toLowerCase() === from.toLowerCase() &&
          r.to.toLowerCase() === to.toLowerCase()
   );
   if (!route) return [];
 
-  return route.slots.map(slot => ({
-    id: uuidv4(),
+  return route.slots.map((slot, index) => ({
+    id: `${from}-${to}-${date}-${index}`, 
     from: route.from,
     to: route.to,
     date,
@@ -37,7 +49,7 @@ export function getDepartures(from: string, to: string, date: string): Departure
     arrivalTime: slot.arr,
     durationMinutes: slot.dur,
     priceNOK: slot.price,
-    seatsAvailable: Math.floor(Math.random() * 80) + 5,
+    seatsAvailable: slot.seats, 
     operator: route.operator,
   }));
 }
