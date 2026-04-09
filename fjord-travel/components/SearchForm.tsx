@@ -25,46 +25,64 @@ export default function SearchForm({ onSearch }: SearchFormProps) {
     <form
       onSubmit={handleSubmit}
       className="flex flex-col w-lg border border-gray-400 rounded-2xl p-4 ">
-      <select
-        value={from}
-        onChange={(e) => setFrom(e.target.value)}
-        className="border rounded-2xl border-gray-300 m-2 p-2 text-gray-500">
-        <option value="">Departure</option>
-        {PORTS.map((p) => (
-          <option key={p} value={p}>
-            {p}
-          </option>
-        ))}
-      </select>
+      {/* Departure */}
+      <div className="flex flex-col m-2">
+        <label className="text-sm font-medium text-gray-700 mb-1 ml-3">
+          Departure
+        </label>
+        <select
+          value={from}
+          onChange={(e) => setFrom(e.target.value)}
+          className="border rounded-2xl border-gray-300 p-2 text-gray-500">
+          <option value="">Select departure</option>
+          {PORTS.map((p) => (
+            <option key={p} value={p}>
+              {p}
+            </option>
+          ))}
+        </select>
+      </div>
 
       {/* <button type="button" onClick={handleSwap}>
         ⇄
       </button> */}
 
-      <select
-        value={to}
-        onChange={(e) => setTo(e.target.value)}
-        className="border rounded-2xl border-gray-300 m-2 p-2 text-gray-500">
-        <option value="">Destination</option>
-        {PORTS.filter((p) => p !== from).map((p) => (
-          <option key={p} value={p}>
-            {p}
-          </option>
-        ))}
-      </select>
+      {/* Arrival */}
+      <div className="flex flex-col m-2">
+        <label className="text-sm font-medium text-gray-700 mb-1 ml-3">
+          Arrival
+        </label>
+        <select
+          value={to}
+          onChange={(e) => setTo(e.target.value)}
+          className="border rounded-2xl border-gray-300 p-2 text-gray-500">
+          <option value="">Select arrival</option>
+          {PORTS.filter((p) => p !== from).map((p) => (
+            <option key={p} value={p}>
+              {p}
+            </option>
+          ))}
+        </select>
+      </div>
 
-      <input
-        type="date"
-        value={date}
-        min={today}
-        onChange={(e) => setDate(e.target.value)}
-        className="border rounded-2xl border-gray-300 m-2 p-2 text-gray-500"
-      />
+      {/* Date */}
+      <div className="flex flex-col m-2">
+        <label className="text-sm font-medium text-gray-700 mb-1 ml-3">
+          Date
+        </label>
+        <input
+          type="date"
+          value={date}
+          min={today}
+          onChange={(e) => setDate(e.target.value)}
+          className="border rounded-2xl border-gray-300 m-2 p-2 text-gray-500"
+        />
+      </div>
 
       <button
         type="submit"
         disabled={!from || !to || !date}
-        className="border rounded-2xl m-2 p-2 bg-red-600 text-white disabled:bg-red-300">
+        className="border rounded-2xl m-2 p-2 bg-gray-600 text-white disabled:bg-gray-300">
         Search departures
       </button>
     </form>

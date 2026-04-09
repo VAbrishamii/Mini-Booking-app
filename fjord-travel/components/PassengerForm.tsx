@@ -87,7 +87,7 @@ export default function PassengerForm({ tripParams }: PassengerFormProps) {
               value={form.firstName}
               onChange={handleChange}
               placeholder="John"
-              className={`w-full pl-9 pr-4 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+              className={`w-full pl-9 pr-4 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-green-500 ${
                 errors.firstName ? "border-red-400" : "border-gray-300"
               }`}
             />
@@ -110,7 +110,7 @@ export default function PassengerForm({ tripParams }: PassengerFormProps) {
               value={form.lastName}
               onChange={handleChange}
               placeholder="Doe"
-              className={`w-full pl-9 pr-4 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+              className={`w-full pl-9 pr-4 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-green-500 ${
                 errors.lastName ? "border-red-400" : "border-gray-300"
               }`}
             />
@@ -133,7 +133,7 @@ export default function PassengerForm({ tripParams }: PassengerFormProps) {
               value={form.phone}
               onChange={handleChange}
               placeholder="+47 123 45 678"
-              className={`w-full pl-9 pr-4 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+              className={`w-full pl-9 pr-4 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-green-500 ${
                 errors.phone ? "border-red-400" : "border-gray-300"
               }`}
             />
@@ -156,7 +156,7 @@ export default function PassengerForm({ tripParams }: PassengerFormProps) {
         </button>
         <button
           onClick={handleContinue}
-          className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium px-5 py-2 rounded-lg transition-colors"
+          className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-medium px-5 py-2 rounded-lg transition-colors"
         >
           Continue
           <ArrowRight size={16} />
