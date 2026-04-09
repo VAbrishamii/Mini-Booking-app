@@ -16,11 +16,6 @@ export default function SearchForm({ onSearch }: SearchFormProps) {
 
   const today = new Date().toISOString().split("T")[0];
 
-  //   function handleSwap() {
-  //     setFrom(to);
-  //     setTo(from);
-  //   }
-
   function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!from || !to || !date) return;

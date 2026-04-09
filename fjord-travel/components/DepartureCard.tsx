@@ -1,16 +1,9 @@
 "use client";
 
 import { ArrowRight, CheckCircle, Clock, Users } from "lucide-react";
+import { Departure } from "@/lib/types";
 
-type Departure = {
-  id: string;
-  departureTime: string;
-  arrivalTime: string;
-  durationMinutes: number;
-  priceNOK: number;
-  operator: string;
-  seatsAvailable: number;
-};
+
 
 function formatDuration(mins: number) {
   return `${Math.floor(mins / 60)}h ${mins % 60}m`;
