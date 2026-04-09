@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { ArrowUpDown } from "lucide-react";
 
 // In a real app, these would come from an API or config file, but hardcoding for simplicity.
 
@@ -21,6 +22,12 @@ export default function SearchForm({ onSearch }: SearchFormProps) {
     if (!from || !to || !date) return;
     onSearch(from, to, date);
   }
+
+  // function handleSwap() {
+  //   setFrom(to);
+  //   setTo(from);
+  // }
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -43,8 +50,8 @@ export default function SearchForm({ onSearch }: SearchFormProps) {
         </select>
       </div>
 
-      {/* <button type="button" onClick={handleSwap}>
-        ⇄
+      {/* <button type="button" onClick={handleSwap} className="self-center my-2 p-1 rounded-full hover:bg-gray-200 transition-colors">
+        <ArrowUpDown size={20} className="text-gray-400" />
       </button> */}
 
       {/* Arrival */}
