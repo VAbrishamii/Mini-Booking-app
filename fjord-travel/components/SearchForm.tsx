@@ -3,7 +3,7 @@ import { useState } from "react";
 
 // In a real app, these would come from an API or config file, but hardcoding for simplicity.
 
-const PORTS = ["Bergen", "Stavanger", "Hirtshals", "Oslo"];
+const PORTS = ["Bergen", "Stavanger", "Hirtshals", "Kristiansand"];
 
 type SearchFormProps = {
   onSearch: (from: string, to: string, date: string) => void;

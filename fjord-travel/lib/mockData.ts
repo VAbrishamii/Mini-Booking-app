@@ -31,6 +31,20 @@ const baseSchedule = [
     ],
     operator: "Fjord Line",
   },
+  {
+    from: "Bergen", to: "Kristiansand",
+    slots: [
+      { dep: "14:00", arr: "05:00", dur: 900, price: 1299, seats: 88 },
+    ],
+    operator: "Fjord Line",
+  },
+  {
+    from: "Kristiansand", to: "Bergen",
+    slots: [
+      { dep: "15:00", arr: "06:00", dur: 900, price: 1299, seats: 62 },
+    ],
+    operator: "Fjord Line",
+  },
 ];
 
 export function getDepartures(from: string, to: string, date: string) {
