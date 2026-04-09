@@ -31,7 +31,7 @@ export default function SearchForm({ onSearch }: SearchFormProps) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col w-lg border border-gray-400 rounded-2xl p-4 ">
+      className="flex flex-col w-full md:w-xl xl:w-2xl border border-gray-400 rounded-2xl p-4">
       {/* Departure */}
       <div className="flex flex-col m-2">
         <label className="text-sm font-medium text-gray-700 mb-1 ml-3">
@@ -73,7 +73,7 @@ export default function SearchForm({ onSearch }: SearchFormProps) {
       </div>
 
       {/* Date */}
-      <div className="flex flex-col m-2">
+      <div className="flex flex-col m-2 ">
         <label className="text-sm font-medium text-gray-700 mb-1 ml-3">
           Date
         </label>
