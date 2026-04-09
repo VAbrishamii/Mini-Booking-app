@@ -35,7 +35,7 @@ export default function SummaryCard({
   }
 
   function handleConfirm() {
-    toast.success(`Booking confirmed! Thank you ${firstName} ${lastName} 🎉`, {
+    toast.success(`Booking confirmed! Thank you ${firstName} ${lastName} `, {
       duration: 3000,
     });
     setTimeout(() => router.push("/"), 3000); // redirect after toast disappears
