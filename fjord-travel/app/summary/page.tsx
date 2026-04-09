@@ -1,6 +1,6 @@
 "use client";
 import { use } from "react";
-import SummaryCard from "@/components/SummeryCard";
+import SummaryCard from "@/components/SummaryCard";
 
 export default function SummaryPage({
   searchParams,

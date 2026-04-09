@@ -1,13 +1,31 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { ArrowLeft, Ship, User, Phone, MapPin, Clock, CreditCard, CheckCircle } from "lucide-react";
+import {
+  ArrowLeft,
+  Ship,
+  User,
+  Phone,
+  MapPin,
+  Clock,
+  CreditCard,
+  CheckCircle,
+} from "lucide-react";
 import type { SummaryCardProps } from "@/lib/types";
-
+import { Toaster, toast } from "react-hot-toast";
 
 export default function SummaryCard({
-  from, to, date, dep, arr, dur, price, operator,
-  firstName, lastName, phone,
+  from,
+  to,
+  date,
+  dep,
+  arr,
+  dur,
+  price,
+  operator,
+  firstName,
+  lastName,
+  phone,
 }: SummaryCardProps) {
   const router = useRouter();
 
@@ -17,21 +35,24 @@ export default function SummaryCard({
   }
 
   function handleConfirm() {
-    alert(`Booking confirmed! 🎉\nThank you ${firstName} ${lastName}, we will send details to your phone ${phone}`);
-    router.push("/");
+    toast.success(`Booking confirmed! Thank you ${firstName} ${lastName} 🎉`, {
+      duration: 3000,
+    });
+    setTimeout(() => router.push("/"), 3000); // redirect after toast disappears
   }
 
   function handleBack() {
-    router.push(`/booking?from=${from}&to=${to}&date=${date}&dep=${dep}&arr=${arr}&dur=${dur}&price=${price}&operator=${operator}`);
+    router.push(
+      `/booking?from=${from}&to=${to}&date=${date}&dep=${dep}&arr=${arr}&dur=${dur}&price=${price}&operator=${operator}`,
+    );
   }
 
   return (
     <main className="max-w-xl mx-auto p-6">
+      <Toaster position="top-center" />
 
       {/* Header */}
-      <h1 className="text-2xl font-bold text-gray-900 mb-1">
-        Booking summary
-      </h1>
+      <h1 className="text-2xl font-bold text-gray-900 mb-1">Booking summary</h1>
       <p className="text-gray-500 mb-6">
         Please review your booking before confirming
       </p>
@@ -44,7 +65,6 @@ export default function SummaryCard({
         </div>
 
         <div className="space-y-3">
-
           {/* Route */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2 text-gray-500 text-sm">
@@ -84,7 +104,6 @@ export default function SummaryCard({
             </div>
             <p className="font-medium text-gray-900">{operator}</p>
           </div>
-
         </div>
       </div>
 
@@ -96,7 +115,6 @@ export default function SummaryCard({
         </div>
 
         <div className="space-y-3">
-
           {/* Name */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2 text-gray-500 text-sm">
@@ -116,7 +134,6 @@ export default function SummaryCard({
             </div>
             <p className="font-medium text-gray-900">{phone}</p>
           </div>
-
         </div>
       </div>
 
@@ -135,20 +152,17 @@ export default function SummaryCard({
       <div className="flex justify-between">
         <button
           onClick={handleBack}
-          className="flex items-center gap-2 border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium px-4 py-2 rounded-lg transition-colors"
-        >
+          className="flex items-center gap-2 border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium px-4 py-2 rounded-lg transition-colors">
           <ArrowLeft size={16} />
           Back
         </button>
         <button
           onClick={handleConfirm}
-          className="flex items-center gap-2 bg-green-700 hover:bg-green-800 text-white font-medium px-5 py-2 rounded-lg transition-colors"
-        >
+          className="flex items-center gap-2 bg-green-700 hover:bg-green-800 text-white font-medium px-5 py-2 rounded-lg transition-colors">
           <CheckCircle size={16} />
           Confirm booking
         </button>
       </div>
-
     </main>
   );
 }
