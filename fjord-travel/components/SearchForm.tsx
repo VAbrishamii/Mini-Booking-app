@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { ArrowUpDown } from "lucide-react";
+import { CustomSelect } from "@/components/CustomSelect";
 
 // In a real app, these would come from an API or config file, but hardcoding for simplicity.
 
@@ -31,45 +32,35 @@ export default function SearchForm({ onSearch }: SearchFormProps) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col w-full md:w-xl xl:w-2xl border border-gray-400 rounded-2xl p-4">
+      className="flex flex-col w-full md:w-xl border border-gray-400 rounded-2xl p-4">
       {/* Departure */}
       <div className="flex flex-col m-2">
         <label className="text-sm font-medium text-gray-700 mb-1 ml-3">
           Departure
         </label>
-        <select
+        <CustomSelect
           value={from}
-          onChange={(e) => setFrom(e.target.value)}
-          className="border rounded-2xl border-gray-300 p-2 text-gray-500">
-          <option value="">Select departure</option>
-          {PORTS.map((p) => (
-            <option key={p} value={p}>
-              {p}
-            </option>
-          ))}
-        </select>
+          onChange={setFrom}
+          options={PORTS}
+          placeholder="Select departure"
+        />
       </div>
 
       {/* <button type="button" onClick={handleSwap} className="self-center my-2 p-1 rounded-full hover:bg-gray-200 transition-colors">
-        <ArrowUpDown size={20} className="text-gray-400" />
-      </button> */}
+          <ArrowUpDown size={20} className="text-gray-400" />
+        </button> */}
 
       {/* Arrival */}
       <div className="flex flex-col m-2">
         <label className="text-sm font-medium text-gray-700 mb-1 ml-3">
           Arrival
         </label>
-        <select
+        <CustomSelect
           value={to}
-          onChange={(e) => setTo(e.target.value)}
-          className="border rounded-2xl border-gray-300 p-2 text-gray-500">
-          <option value="">Select arrival</option>
-          {PORTS.filter((p) => p !== from).map((p) => (
-            <option key={p} value={p}>
-              {p}
-            </option>
-          ))}
-        </select>
+          onChange={setTo}
+          options={PORTS.filter((p) => p !== from)}
+          placeholder="Select arrival"
+        />
       </div>
 
       {/* Date */}
