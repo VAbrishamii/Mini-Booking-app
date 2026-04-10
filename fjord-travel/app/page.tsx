@@ -13,7 +13,7 @@ export default function HomePage() {
   return (
     <main>
       <div className="flex flex-col items-center">
-        <h1 className="size-full flex items-center justify-center p-4 font-bold text-lg text-red-600">
+        <h1 className="size-full flex items-center justify-center p-4 font-bold text-2xl text-red-600">
           Fjord Travel <Ship  size={24} className="ml-2" />
         </h1>
         <div className="p-4 flex items-center justify-center">

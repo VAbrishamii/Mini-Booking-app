@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import type { SummaryCardProps } from "@/lib/types";
 import { Toaster, toast } from "react-hot-toast";
+import { ro } from "date-fns/locale";
 
 export default function SummaryCard({
   from,
@@ -34,13 +35,17 @@ export default function SummaryCard({
     return `${Math.floor(m / 60)}h ${m % 60}m`;
   }
 
-  function handleConfirm() {
-    toast.success(`Booking confirmed! Thank you ${firstName} ${lastName} `, {
-      duration: 3000,
-    });
-    setTimeout(() => router.push("/"), 3000); // redirect after toast disappears
-  }
+  // function handleConfirm() {
+  //   toast.success(`Booking confirmed! Thank you ${firstName} ${lastName} `, {
+  //     duration: 3000,
+  //   });
+  //   setTimeout(() => router.push("/bookingSuccess"), 3000);
+  // }
 
+  function handleConfirm() {
+   router.push("/bookingSuccess");
+  }
+  
   function handleBack() {
     router.push(
       `/booking?from=${from}&to=${to}&date=${date}&dep=${dep}&arr=${arr}&dur=${dur}&price=${price}&operator=${operator}`,
@@ -52,7 +57,7 @@ export default function SummaryCard({
       <Toaster position="top-center" />
 
       {/* Header */}
-      <h1 className="text-2xl font-bold text-gray-900 mb-1">Booking summary</h1>
+      <h1 className="text-2xl font-bold text-gray-900 mb-1">Booking Summary</h1>
       <p className="text-gray-500 mb-6">
         Please review your booking before confirming
       </p>
@@ -61,7 +66,7 @@ export default function SummaryCard({
       <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm mb-4">
         <div className="flex items-center gap-2 mb-4">
           <Ship size={18} className="text-green-700" />
-          <h2 className="font-semibold text-gray-900">Trip details</h2>
+          <h2 className="font-semibold text-gray-900">Trip Details</h2>
         </div>
 
         <div className="space-y-3">
@@ -111,7 +116,7 @@ export default function SummaryCard({
       <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm mb-4">
         <div className="flex items-center gap-2 mb-4">
           <User size={18} className="text-green-700" />
-          <h2 className="font-semibold text-gray-900">Passenger details</h2>
+          <h2 className="font-semibold text-gray-900">Passenger Details</h2>
         </div>
 
         <div className="space-y-3">
@@ -142,7 +147,7 @@ export default function SummaryCard({
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <CreditCard size={18} className="text-green-700" />
-            <h2 className="font-semibold text-gray-900">Total price</h2>
+            <h2 className="font-semibold text-gray-900">Total Price</h2>
           </div>
           <p className="text-2xl font-bold text-green-700">{price} NOK</p>
         </div>

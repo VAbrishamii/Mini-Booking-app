@@ -18,6 +18,8 @@ export function CustomSelect({
   placeholder,
 }: SelectProps) {
   const [open, setOpen] = useState(false);
+
+  // Ref to the dropdown container for detecting outside clicks
   const ref = useRef<HTMLDivElement>(null);
 
   // close when clicking outside
@@ -47,7 +49,7 @@ export function CustomSelect({
         />
       </button>
 
-      {/* Dropdown options — same width as trigger */}
+      {/* Dropdown options */}
       {open && (
         <ul className="absolute z-10 mt-1 w-full bg-white border border-gray-200 rounded-2xl shadow-md overflow-hidden">
           {options.map((opt) => (

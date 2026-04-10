@@ -65,7 +65,7 @@ export default function PassengerForm({ tripParams }: PassengerFormProps) {
 
       {/* Header */}
       <h1 className="text-2xl font-bold text-gray-900 mb-1">
-        Passenger details
+        Passenger Details
       </h1>
       <p className="text-gray-500 mb-8">
         {tripParams.from} → {tripParams.to} · {tripParams.date}
@@ -156,7 +156,7 @@ export default function PassengerForm({ tripParams }: PassengerFormProps) {
         </button>
         <button
           onClick={handleContinue}
-          className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-medium px-5 py-2 rounded-lg transition-colors"
+          className="flex items-center gap-2 bg-green-700 hover:bg-green-800 text-white font-medium px-5 py-2 rounded-lg transition-colors"
         >
           Continue
           <ArrowRight size={16} />
