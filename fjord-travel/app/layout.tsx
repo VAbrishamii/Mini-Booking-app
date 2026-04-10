@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Fjord Travel",
   description: "Book your ferry departure",
   icons: {
-    icon: "data:,", 
+    icon: "data:,",
   },
 };
 
@@ -17,7 +17,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {children}
+        <main className="min-h-screen flex flex-col items-center justify-center p-4 md:p-8">
+          {children}
+        </main>
       </body>
     </html>
   );

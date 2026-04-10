@@ -8,6 +8,7 @@ import { Departure } from "@/lib/types";
 function formatDuration(mins: number) {
   return `${Math.floor(mins / 60)}h ${mins % 60}m`;
 }
+
 type DepartureCardProps = {
   departure: Departure;
   isSelected: boolean;
@@ -18,7 +19,7 @@ export default function DepartureCard({ departure, isSelected, onSelect }: Depar
   return (
     <div
       onClick={onSelect}
-      className={`border rounded-xl p-5 mb-4 cursor-pointer transition-all ${
+      className={`border w-full md:w-xl rounded-xl p-5 mb-4 cursor-pointer transition-all ${
         isSelected
           ? "border-green-500 bg-green-50 shadow-md"
           : "border-gray-200 bg-white hover:shadow-md"

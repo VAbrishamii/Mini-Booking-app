@@ -61,7 +61,7 @@ export default function PassengerForm({ tripParams }: PassengerFormProps) {
   }
 
   return (
-    <main className="max-w-xl mx-auto p-6">
+    <main className="w-full md:w-xl mx-auto p-6">
 
       {/* Header */}
       <h1 className="text-2xl font-bold text-gray-900 mb-1">

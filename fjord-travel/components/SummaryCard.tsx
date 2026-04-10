@@ -48,7 +48,7 @@ export default function SummaryCard({
   }
 
   return (
-    <main className="max-w-xl mx-auto p-6">
+    <main className="w-full md:w-xl mx-auto p-6">
       <Toaster position="top-center" />
 
       {/* Header */}
