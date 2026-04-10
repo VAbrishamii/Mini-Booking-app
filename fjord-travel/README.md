@@ -1,4 +1,4 @@
-# Fjord Travel 🚢
+# Fjord Travel 
 
 A mini ferry booking application built as a technical assignment.
 
