@@ -6,6 +6,7 @@ import { ArrowRight, Search } from "lucide-react";
 import DepartureCard from "@/components/DepartureCard";
 import { getDepartures } from "@/lib/mockData";
 import { Departure, DepartureListProps } from "@/lib/types";
+import { formatDateToDisplay } from "@/app/utils/Date";
 
 export default function DepartureList({ from, to, date }: DepartureListProps) {
   const departures = getDepartures(from, to, date);
@@ -34,7 +35,7 @@ export default function DepartureList({ from, to, date }: DepartureListProps) {
     return (
       <div className="max-w-2xl mx-auto p-6">
         <p className="text-gray-500">
-          No departures found for {from} → {to} on {date}.
+          No departures found for {from} → {to} on {formatDateToDisplay(date)}.
         </p>
         <button
           onClick={() => router.push(`/?from=${from}&to=${to}&date=${date}`)}
@@ -53,23 +54,26 @@ export default function DepartureList({ from, to, date }: DepartureListProps) {
     <main className="max-w-2xl mx-auto p-6 pb-32">
       {/* Header */}
       <div className="relative flex items-center justify-between gap-2 mb-4">
-        <span className="absolute left-8 top-1/2 -translate-y-1/2 ">
+        <span className="absolute right-8 top-1/2 -translate-y-1/2 ">
           <Search size={16} />
         </span>
 
         <input
           type="text"
-          value={
-            from && to && date
-              ? `${from} → ${to} · ${date}`
-              : "Where do you want to go?"
-          }
+          value={from && to ? `${from} → ${to} ` : "Where do you want to go?"}
           readOnly
           onClick={handleEditSearch}
           onFocus={handleEditSearch}
-          className="w-full border border-gray-300 rounded-full py-3 pl-10 pr-4 text-center cursor-pointer bg-white shadow-sm hover:shadow-md transition focus:outline-none focus:ring-2 focus:ring-green-700 caret-transparent"
+          className="w-full border border-gray-300 hover:border-green-700 rounded-full py-3 pl-10 pr-4 cursor-pointer bg-white shadow-sm hover:shadow-md transition focus:outline-none focus:ring-2 focus:ring-green-700 caret-transparent"
         />
+        <span className="absolute right-53 top-1/2 -translate-y-1/2 text-l text-gray-800">
+          {formatDateToDisplay(date)}
+        </span>
       </div>
+
+      <h1 className="text-xl font-bold text-gray-900 mb-2 mt-8">
+        Please select your ticket
+      </h1>
 
       {/* Departure cards */}
       {departures.map((dep) => (

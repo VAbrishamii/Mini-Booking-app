@@ -12,8 +12,8 @@ import {
   CheckCircle,
 } from "lucide-react";
 import type { SummaryCardProps } from "@/lib/types";
-import { Toaster, toast } from "react-hot-toast";
-import { ro } from "date-fns/locale";
+import { formatDateToDisplay } from "@/app/utils/Date";
+
 
 export default function SummaryCard({
   from,
@@ -45,7 +45,7 @@ export default function SummaryCard({
   function handleConfirm() {
    router.push("/bookingSuccess");
   }
-  
+
   function handleBack() {
     router.push(
       `/booking?from=${from}&to=${to}&date=${date}&dep=${dep}&arr=${arr}&dur=${dur}&price=${price}&operator=${operator}`,
@@ -54,7 +54,7 @@ export default function SummaryCard({
 
   return (
     <main className="w-full md:w-xl mx-auto p-6">
-      <Toaster position="top-center" />
+  
 
       {/* Header */}
       <h1 className="text-2xl font-bold text-gray-900 mb-1">Booking Summary</h1>
@@ -87,7 +87,7 @@ export default function SummaryCard({
               <Clock size={14} />
               Date
             </div>
-            <p className="font-medium text-gray-900">{date}</p>
+            <p className="font-medium text-gray-900">{formatDateToDisplay(date)}</p>
           </div>
 
           {/* Departure & arrival */}
@@ -157,13 +157,13 @@ export default function SummaryCard({
       <div className="flex justify-between">
         <button
           onClick={handleBack}
-          className="flex items-center gap-2 border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium px-4 py-2 rounded-lg transition-colors">
+          className="flex items-center gap-2 border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium cursor-pointer px-4 py-2 rounded-lg transition-colors">
           <ArrowLeft size={16} />
           Back
         </button>
         <button
           onClick={handleConfirm}
-          className="flex items-center gap-2 bg-green-700 hover:bg-green-800 text-white font-medium px-5 py-2 rounded-lg transition-colors">
+          className="flex items-center gap-2 bg-green-700 hover:bg-green-800 text-white font-medium cursor-pointer px-5 py-2 rounded-lg transition-colors">
           <CheckCircle size={16} />
           Confirm booking
         </button>

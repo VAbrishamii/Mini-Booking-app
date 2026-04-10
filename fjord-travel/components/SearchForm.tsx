@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { CustomSelect } from "@/components/CustomSelect";
 import { useSearchParams } from "next/dist/client/components/navigation";
+import {  MapPinCheck, MapPinHouse } from "lucide-react";
 
 
 const PORTS = ["Bergen", "Stavanger", "Hirtshals", "Kristiansand"];
@@ -16,18 +17,17 @@ export default function SearchForm({ onSearch }: SearchFormProps) {
 
   // pre-fill from URL if coming back from results page
   const [from, setFrom] = useState(searchParams.get("from") || "");
-  const [to, setTo]     = useState(searchParams.get("to")   || "");
+  const [to, setTo] = useState(searchParams.get("to") || "");
   const [date, setDate] = useState(searchParams.get("date") || "");
 
-
   const today = new Date().toISOString().split("T")[0];
+  
 
   function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!from || !to || !date) return;
     onSearch(from, to, date);
   }
-
 
   return (
     <form
@@ -38,14 +38,15 @@ export default function SearchForm({ onSearch }: SearchFormProps) {
         <label className="text-l font-medium text-gray-900 mb-1 ml-3">
           Departure
         </label>
+
         <CustomSelect
           value={from}
           onChange={setFrom}
           options={PORTS}
-          placeholder="Select departure"
+          placeholder="From"
+          icon={<MapPinHouse size={16} className="text-gray-400" />}
         />
       </div>
-
 
       {/* Arrival */}
       <div className="flex flex-col m-2">
@@ -56,7 +57,8 @@ export default function SearchForm({ onSearch }: SearchFormProps) {
           value={to}
           onChange={setTo}
           options={PORTS.filter((p) => p !== from)}
-          placeholder="Select arrival"
+          placeholder="To"
+          icon={<MapPinCheck size={16} className="text-gray-400" />}
         />
       </div>
 
@@ -77,7 +79,7 @@ export default function SearchForm({ onSearch }: SearchFormProps) {
       <button
         type="submit"
         disabled={!from || !to || !date}
-        className="border rounded-2xl m-2 p-2 bg-green-700 hover:bg-green-800 text-white disabled:bg-gray-400">
+        className="border rounded-2xl m-2 p-2 bg-green-700 hover:bg-green-800 text-white disabled:bg-gray-400 disabled:hover:bg-gray-600 cursor-pointer">
         Search departures
       </button>
     </form>

@@ -9,7 +9,7 @@ const baseSchedule = [
     operator: "Fjord Line",
   },
   {
-    from: "Stavanger", to: "Bergen",
+    from: "Hirtshals", to: "Bergen",
     slots: [
       { dep: "08:00", arr: "12:30", dur: 270, price: 549, seats: 55 },
       { dep: "13:00", arr: "17:30", dur: 270, price: 649, seats: 23 },
@@ -25,7 +25,7 @@ const baseSchedule = [
     operator: "Fjord Line",
   },
   {
-    from: "Hirtshals", to: "Bergen",
+    from: "Stavanger", to: "Bergen",
     slots: [
       { dep: "16:00", arr: "07:00", dur: 900, price: 1299, seats: 74 },
     ],

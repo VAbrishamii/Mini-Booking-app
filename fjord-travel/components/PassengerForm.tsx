@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, ArrowRight, User, Phone } from "lucide-react";
 import type { PassengerForm, TripParams } from "@/lib/types";
+import { formatDateToDisplay } from "@/app/utils/Date";
 
 type PassengerFormProps = {
   tripParams: TripParams;
@@ -68,7 +69,7 @@ export default function PassengerForm({ tripParams }: PassengerFormProps) {
         Passenger Details
       </h1>
       <p className="text-gray-500 mb-8">
-        {tripParams.from} → {tripParams.to} · {tripParams.date}
+        {tripParams.from} → {tripParams.to} · {formatDateToDisplay(tripParams.date)}
       </p>
 
       {/* Form card */}
@@ -86,7 +87,7 @@ export default function PassengerForm({ tripParams }: PassengerFormProps) {
               name="firstName"
               value={form.firstName}
               onChange={handleChange}
-              placeholder="John"
+              placeholder="Name"
               className={`w-full pl-9 pr-4 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-green-500 ${
                 errors.firstName ? "border-red-400" : "border-gray-300"
               }`}
@@ -109,7 +110,7 @@ export default function PassengerForm({ tripParams }: PassengerFormProps) {
               name="lastName"
               value={form.lastName}
               onChange={handleChange}
-              placeholder="Doe"
+              placeholder="Family"
               className={`w-full pl-9 pr-4 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-green-500 ${
                 errors.lastName ? "border-red-400" : "border-gray-300"
               }`}
@@ -149,14 +150,14 @@ export default function PassengerForm({ tripParams }: PassengerFormProps) {
       <div className="flex justify-between mt-6">
         <button
           onClick={handleBack}
-          className="flex items-center gap-2 border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium px-4 py-2 rounded-lg transition-colors"
+          className="flex items-center gap-2 border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium cursor-pointer px-4 py-2 rounded-lg transition-colors"
         >
           <ArrowLeft size={16} />
           Back
         </button>
         <button
           onClick={handleContinue}
-          className="flex items-center gap-2 bg-green-700 hover:bg-green-800 text-white font-medium px-5 py-2 rounded-lg transition-colors"
+          className="flex items-center gap-2 bg-green-700 hover:bg-green-800 text-white font-medium cursor-pointer px-5 py-2 rounded-lg transition-colors"
         >
           Continue
           <ArrowRight size={16} />

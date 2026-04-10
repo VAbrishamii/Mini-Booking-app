@@ -9,6 +9,7 @@ type SelectProps = {
   onChange: (value: string) => void;
   options: string[];
   placeholder: string;
+  icon?: React.ReactNode;
 };
 
 export function CustomSelect({
@@ -16,6 +17,7 @@ export function CustomSelect({
   onChange,
   options,
   placeholder,
+  icon,
 }: SelectProps) {
   const [open, setOpen] = useState(false);
 
@@ -35,11 +37,18 @@ export function CustomSelect({
 
   return (
     <div ref={ref} className="relative w-full">
+      {/* Icon */}
+      {icon && (
+        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
+          {icon}
+        </span>
+      )}
+
       {/* Trigger button */}
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between border border-gray-300 rounded-2xl p-2 text-left bg-white text-gray-500 hover:border-gray-400 transition-colors">
+        className="w-full flex items-center justify-between border border-gray-300 rounded-2xl py-2 pl-10 pr-3 text-left bg-white text-gray-500 hover:border-gray-400 transition-colors">
         <span className={value ? "text-gray-900" : "text-gray-400"}>
           {value || placeholder}
         </span>
