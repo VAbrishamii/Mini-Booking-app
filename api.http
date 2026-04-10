@@ -1,0 +1,14 @@
+### Get departures - Bergen to Stavanger
+GET http://localhost:3000/api/departures?from=Bergen&to=Stavanger&date=2026-04-10
+
+### Get departures - Bergen to Hirtshals
+GET http://localhost:3000/api/departures?from=Bergen&to=Hirtshals&date=2026-04-10
+
+### Get departures - reverse route
+GET http://localhost:3000/api/departures?from=Stavanger&to=Bergen&date=2026-04-10
+
+### Missing params - should return 400 error
+GET http://localhost:3000/api/departures?from=Bergen
+
+### No matching route - should return empty array
+GET http://localhost:3000/api/departures?from=Bergen&to=Oslo&date=2026-04-10

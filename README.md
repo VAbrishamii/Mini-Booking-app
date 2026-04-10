@@ -14,6 +14,14 @@ cd fjord-travel
 npm install
 npm run dev
 ```
+
+## Testing the API
+
+1. Install [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) extension in VS Code
+2. Make sure the dev server is running (`npm run dev`)
+3. Open `api.http` in the root folder
+4. Click **Send Request** above any endpoint to test
+
 ---
 
 ## Features
