@@ -1,19 +1,22 @@
 "use client";
+// A card component to display departure details and allow selection
 
 import { ArrowRight, CheckCircle, Clock, Users } from "lucide-react";
 import { Departure } from "@/lib/types";
 
 
-
+// Helper to format duration from minutes to "Xh Ym"
 function formatDuration(mins: number) {
   return `${Math.floor(mins / 60)}h ${mins % 60}m`;
 }
 
+// Props for the DepartureCard component
 type DepartureCardProps = {
   departure: Departure;
   isSelected: boolean;
   onSelect: () => void;
 };
+
 
 export default function DepartureCard({ departure, isSelected, onSelect }: DepartureCardProps) {
   return (

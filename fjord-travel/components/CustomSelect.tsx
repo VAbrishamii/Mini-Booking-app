@@ -1,4 +1,6 @@
 "use client";
+// A custom select dropdown component with basic styling and behavior
+
 import { useState, useRef, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
 
