@@ -1,4 +1,6 @@
 "use client";
+// This component displays a list of departures based on the search criteria passed as props.
+// It allows the user to select a departure and continue to the booking page with the selected departure details in the query parameters.
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -6,7 +8,7 @@ import { ArrowRight, Search } from "lucide-react";
 import DepartureCard from "@/components/DepartureCard";
 import { getDepartures } from "@/lib/mockData";
 import { Departure, DepartureListProps } from "@/lib/types";
-import { formatDateToDisplay } from "@/app/utils/Date";
+import { formatDateToDisplay } from "@/lib/utils";
 
 export default function DepartureList({ from, to, date }: DepartureListProps) {
   const departures = getDepartures(from, to, date);
@@ -14,6 +16,7 @@ export default function DepartureList({ from, to, date }: DepartureListProps) {
 
   const [selected, setSelected] = useState<Departure | null>(null);
 
+  // handle continue to booking page with selected departure details in query parameters
   function handleContinue() {
     if (!selected) return;
     const params = new URLSearchParams({
@@ -46,6 +49,7 @@ export default function DepartureList({ from, to, date }: DepartureListProps) {
     );
   }
 
+  // Simple handler to go back to search form with current search criteria pre-filled in the URL
   const handleEditSearch = () => {
     router.push(`/?from=${from}&to=${to}&date=${date}`);
   };
@@ -87,7 +91,7 @@ export default function DepartureList({ from, to, date }: DepartureListProps) {
 
       {/* Bottom action bar  */}
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 flex items-center justify-between shadow-lg">
-        {/* Left side — shows hint or selected info */}
+        {/* Left side, shows hint or selected info */}
         <div>
           {selected ? (
             <>

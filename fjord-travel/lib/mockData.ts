@@ -47,6 +47,7 @@ const baseSchedule = [
   },
 ];
 
+// Function to get departures based on search criteria, returns an array of Departure objects
 export function getDepartures(from: string, to: string, date: string) {
   const route = baseSchedule.find(
     r => r.from.toLowerCase() === from.toLowerCase() &&

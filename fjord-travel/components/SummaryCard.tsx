@@ -1,4 +1,5 @@
 "use client";
+// This component displays a summary of the booking details including trip information and passenger details.
 
 import { useRouter } from "next/navigation";
 import {
@@ -12,8 +13,8 @@ import {
   CheckCircle,
 } from "lucide-react";
 import type { SummaryCardProps } from "@/lib/types";
-import { formatDateToDisplay } from "@/app/utils/Date";
-
+import { formatDateToDisplay } from "@/lib/utils";
+import { formatDuration } from "@/lib/utils";
 
 export default function SummaryCard({
   from,
@@ -30,22 +31,13 @@ export default function SummaryCard({
 }: SummaryCardProps) {
   const router = useRouter();
 
-  function formatDuration(mins: string) {
-    const m = parseInt(mins);
-    return `${Math.floor(m / 60)}h ${m % 60}m`;
-  }
 
-  // function handleConfirm() {
-  //   toast.success(`Booking confirmed! Thank you ${firstName} ${lastName} `, {
-  //     duration: 3000,
-  //   });
-  //   setTimeout(() => router.push("/bookingSuccess"), 3000);
-  // }
-
+  // Handle continue button click, validate the form and navigate to summary page .
   function handleConfirm() {
-   router.push("/bookingSuccess");
+    router.push("/bookingSuccess");
   }
-
+  
+  // Handle back button click
   function handleBack() {
     router.push(
       `/booking?from=${from}&to=${to}&date=${date}&dep=${dep}&arr=${arr}&dur=${dur}&price=${price}&operator=${operator}`,
@@ -54,8 +46,6 @@ export default function SummaryCard({
 
   return (
     <main className="w-full md:w-xl mx-auto p-6">
-  
-
       {/* Header */}
       <h1 className="text-2xl font-bold text-gray-900 mb-1">Booking Summary</h1>
       <p className="text-gray-500 mb-6">
@@ -87,7 +77,9 @@ export default function SummaryCard({
               <Clock size={14} />
               Date
             </div>
-            <p className="font-medium text-gray-900">{formatDateToDisplay(date)}</p>
+            <p className="font-medium text-gray-900">
+              {formatDateToDisplay(date)}
+            </p>
           </div>
 
           {/* Departure & arrival */}

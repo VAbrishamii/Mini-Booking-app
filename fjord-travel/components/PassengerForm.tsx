@@ -1,11 +1,14 @@
 "use client";
+// This component renders a form for entering passenger details and validates the input before allowing the user to continue.
+// It also includes navigation buttons to go back to the results page or continue to the summary page.
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, ArrowRight, User, Phone } from "lucide-react";
 import type { PassengerForm, TripParams } from "@/lib/types";
-import { formatDateToDisplay } from "@/app/utils/Date";
+import { formatDateToDisplay } from "@/lib/utils";
 
+// Props for the PassengerForm component
 type PassengerFormProps = {
   tripParams: TripParams;
 };
@@ -21,20 +24,20 @@ export default function PassengerForm({ tripParams }: PassengerFormProps) {
 
   const [errors, setErrors] = useState<Partial<PassengerForm>>({});
 
+  // Handle input changes and clear errors for the field
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
     setErrors((prev) => ({ ...prev, [name]: "" }));
   }
 
+  // Validate the form fields and set error messages if validation fails
   function validate(): boolean {
     const newErrors: Partial<PassengerForm> = {};
 
-    if (!form.firstName.trim())
-      newErrors.firstName = "First name is required";
+    if (!form.firstName.trim()) newErrors.firstName = "First name is required";
 
-    if (!form.lastName.trim())
-      newErrors.lastName = "Last name is required";
+    if (!form.lastName.trim()) newErrors.lastName = "Last name is required";
 
     if (!form.phone.trim()) {
       newErrors.phone = "Phone number is required";
@@ -46,6 +49,7 @@ export default function PassengerForm({ tripParams }: PassengerFormProps) {
     return Object.keys(newErrors).length === 0;
   }
 
+  // Handle continue button click, validate the form and navigate to summary page .
   function handleContinue() {
     if (!validate()) return;
     const summaryParams = new URLSearchParams({
@@ -57,24 +61,26 @@ export default function PassengerForm({ tripParams }: PassengerFormProps) {
     router.push(`/summary?${summaryParams}`);
   }
 
+  // Handle back button click
   function handleBack() {
-    router.push(`/results?from=${tripParams.from}&to=${tripParams.to}&date=${tripParams.date}`);
+    router.push(
+      `/results?from=${tripParams.from}&to=${tripParams.to}&date=${tripParams.date}`,
+    );
   }
 
   return (
     <main className="w-full md:w-xl mx-auto p-6">
-
       {/* Header */}
       <h1 className="text-2xl font-bold text-gray-900 mb-1">
         Passenger Details
       </h1>
       <p className="text-gray-500 mb-8">
-        {tripParams.from} → {tripParams.to} · {formatDateToDisplay(tripParams.date)}
+        {tripParams.from} → {tripParams.to} ·{" "}
+        {formatDateToDisplay(tripParams.date)}
       </p>
 
       {/* Form card */}
       <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm space-y-5">
-
         {/* First name */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -143,27 +149,23 @@ export default function PassengerForm({ tripParams }: PassengerFormProps) {
             <p className="text-red-500 text-xs mt-1">{errors.phone}</p>
           )}
         </div>
-
       </div>
 
       {/* Action buttons */}
       <div className="flex justify-between mt-6">
         <button
           onClick={handleBack}
-          className="flex items-center gap-2 border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium cursor-pointer px-4 py-2 rounded-lg transition-colors"
-        >
+          className="flex items-center gap-2 border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium cursor-pointer px-4 py-2 rounded-lg transition-colors">
           <ArrowLeft size={16} />
           Back
         </button>
         <button
           onClick={handleContinue}
-          className="flex items-center gap-2 bg-green-700 hover:bg-green-800 text-white font-medium cursor-pointer px-5 py-2 rounded-lg transition-colors"
-        >
+          className="flex items-center gap-2 bg-green-700 hover:bg-green-800 text-white font-medium cursor-pointer px-5 py-2 rounded-lg transition-colors">
           Continue
           <ArrowRight size={16} />
         </button>
       </div>
-
     </main>
   );
 }

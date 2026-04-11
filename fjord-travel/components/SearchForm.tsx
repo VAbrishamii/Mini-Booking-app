@@ -1,18 +1,21 @@
 "use client";
+// This component renders a search form for selecting departure and arrival ports and a date.
+
 import { useState } from "react";
 import { CustomSelect } from "@/components/CustomSelect";
 import { useSearchParams } from "next/dist/client/components/navigation";
-import {  MapPinCheck, MapPinHouse } from "lucide-react";
+import { MapPinCheck, MapPinHouse } from "lucide-react";
 
 
+// List of ports for the select options
 const PORTS = ["Bergen", "Stavanger", "Hirtshals", "Kristiansand"];
 
+// Props for the SearchForm component
 type SearchFormProps = {
   onSearch: (from: string, to: string, date: string) => void;
 };
 
 export default function SearchForm({ onSearch }: SearchFormProps) {
-  // const router = useRouter();
   const searchParams = useSearchParams();
 
   // pre-fill from URL if coming back from results page
@@ -20,9 +23,10 @@ export default function SearchForm({ onSearch }: SearchFormProps) {
   const [to, setTo] = useState(searchParams.get("to") || "");
   const [date, setDate] = useState(searchParams.get("date") || "");
 
+  // Get today's date for setting the minimum date in the date input
   const today = new Date().toISOString().split("T")[0];
-  
 
+  // Handle form submission, validate that all fields are filled
   function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!from || !to || !date) return;

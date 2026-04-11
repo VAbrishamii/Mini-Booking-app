@@ -22,7 +22,7 @@ npm run dev
 - Browse available departures with time, duration and price
 - Select a departure and fill in passenger details
 - Review and confirm booking with a summary page
-- Fully responsive — works on mobile and desktop
+- Fully responsive, works on mobile and desktop
 
 ---
 
@@ -34,7 +34,7 @@ npm run dev
 | TypeScript | Type safety throughout |
 | Tailwind CSS | Styling and responsive design |
 | Lucide React | Icons |
-| React Hot Toast | Booking confirmation feedback |
+
 
 ---
 
@@ -50,7 +50,7 @@ Passing state through URL params makes every page bookmarkable and shareable wit
 The task specified no database was needed. Mock data is generated programmatically in `mockData.ts` making it easy to extend with new routes and time slots without touching any other code.
 
 **Why a custom select dropdown?**
-Native browser `<select>` dropdowns cannot be styled consistently across browsers — the options list ignores CSS width rules. A custom dropdown built with React state gives full control over styling and ensures a consistent experience.
+Native browser `<select>` dropdowns cannot be styled consistently across browsers, the options list ignores CSS width rules. A custom dropdown built with React state gives full control over styling and ensures a consistent experience.
 
 **Why thin pages and fat components?**
 Each `page.tsx` only unwraps URL params and passes them to a component. All logic lives in the component. This makes components reusable, independently testable and easier to read.
@@ -86,7 +86,6 @@ Browser native dropdowns cannot be styled with CSS. Built a custom dropdown comp
 
 ## What I would do differently with more time
 
-- **Real database** — PostgreSQL with Prisma for actual seat inventory and booking persistence
 - **Authentication** — user accounts with booking history
 - **Return trip selection** — book outbound and return in one flow
 - **Email confirmation** — send booking details to passenger email

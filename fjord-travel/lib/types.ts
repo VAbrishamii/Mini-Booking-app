@@ -7,7 +7,7 @@ export type Departure = {
   id: string;
   from: string;
   to: string;
-  date: string;           // "YYYY-MM-DD"
+  date: string;           // "DD.MM.YYYY"
   departureTime: string;  // "08:30"
   arrivalTime: string;    // "12:45"
   durationMinutes: number;

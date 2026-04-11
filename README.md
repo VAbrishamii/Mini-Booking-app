@@ -42,7 +42,7 @@ npm run dev
 | TypeScript | Type safety throughout |
 | Tailwind CSS | Styling and responsive design |
 | Lucide React | Icons |
-| React Hot Toast | Booking confirmation feedback |
+
 
 ---
 
@@ -94,7 +94,6 @@ Browser native dropdowns cannot be styled with CSS. Built a custom dropdown comp
 
 ## What I would do differently with more time
 
-- **Real database** — PostgreSQL with Prisma for actual seat inventory and booking persistence
 - **Authentication** — user accounts with booking history
 - **Return trip selection** — book outbound and return in one flow
 - **Email confirmation** — send booking details to passenger email

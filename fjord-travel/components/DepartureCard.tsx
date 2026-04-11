@@ -3,12 +3,8 @@
 
 import { ArrowRight, CheckCircle, Clock, Users } from "lucide-react";
 import { Departure } from "@/lib/types";
+import { formatDuration } from "@/lib/utils";
 
-
-// Helper to format duration from minutes to "Xh Ym"
-function formatDuration(mins: number) {
-  return `${Math.floor(mins / 60)}h ${mins % 60}m`;
-}
 
 // Props for the DepartureCard component
 type DepartureCardProps = {
