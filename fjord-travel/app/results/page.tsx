@@ -1,3 +1,5 @@
+'use client";'
+
 import { use } from "react";
 import DepartureList from "@/components/DepartureListe";
 

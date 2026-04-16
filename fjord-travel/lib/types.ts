@@ -1,8 +1,10 @@
+// The Route type 
 export type Route = {
   from: string;
   to: string;
 };
 
+// The Departure type 
 export type Departure = {
   id: string;
   from: string;
@@ -35,7 +37,7 @@ export type SummaryCardProps = {
   lastName: string;
   phone: string;
 };
-
+// The TripParams type represents the URL parameters 
 export type TripParams = {
   id: string;
   from: string;
@@ -47,7 +49,7 @@ export type TripParams = {
   price: string;
   operator: string;
 };
-
+// The PassengerForm type represents the form data for a passenger 
 export type PassengerForm = {
   firstName: string;
   lastName: string;

@@ -19,6 +19,7 @@ export function CustomSelect({
   placeholder,
   icon,
 }: SelectProps) {
+  
   const [open, setOpen] = useState(false);
 
   // Ref to the dropdown container for detecting outside clicks

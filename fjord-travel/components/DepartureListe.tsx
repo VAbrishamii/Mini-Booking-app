@@ -97,7 +97,7 @@ export default function DepartureList({ from, to, date }: DepartureListProps) {
             <>
               <p className="text-sm text-gray-500">Selected departure</p>
               <p className="font-bold text-gray-900">
-                {selected.departureTime} → {selected.arrivalTime} ·{" "}
+                {selected.departureTime} → {selected.arrivalTime} 
                 {selected.priceNOK} NOK
               </p>
             </>
