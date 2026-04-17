@@ -57,7 +57,7 @@ export default function DepartureList({ from, to, date }: DepartureListProps) {
   return (
     <main className="max-w-2xl mx-auto p-6 pb-32">
       {/* Header */}
-      <div className="relative flex items-center justify-between gap-2 mb-4">
+      <div className="relative flex items-center justify-between gap-2 mb-4 cursor-pointer">
         <span className="absolute right-8 top-1/2 -translate-y-1/2 ">
           <Search size={16} />
         </span>
