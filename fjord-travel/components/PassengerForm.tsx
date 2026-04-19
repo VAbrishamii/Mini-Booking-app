@@ -75,7 +75,7 @@ export default function PassengerForm({ tripParams }: PassengerFormProps) {
         Passenger Details
       </h1>
       <p className="text-gray-500 mb-8">
-        {tripParams.from} → {tripParams.to} ·{" "}
+        {tripParams.from} → {tripParams.to} 
         {formatDateToDisplay(tripParams.date)}
       </p>
 

@@ -9,7 +9,7 @@ import { formatDuration } from "@/lib/utils";
 // Props for the DepartureCard component
 type DepartureCardProps = {
   departure: Departure;
-  isSelected: boolean;
+  isSelected: boolean; 
   onSelect: () => void;
 };
 
