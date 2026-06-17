@@ -27,7 +27,7 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
-    # Run tests using 
+    # Run tests using ESLint to check for code quality and style issues
     - name: Run ESLint (Linting)
       run: npm run lint
 
