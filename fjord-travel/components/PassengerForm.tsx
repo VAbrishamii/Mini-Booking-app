@@ -5,7 +5,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, ArrowRight, User, Phone } from "lucide-react";
-import type { PassengerForm, TripParams } from "@/lib/types";
+import type { PassengerData, TripParams } from "@/lib/types";
 import { formatDateToDisplay } from "@/lib/utils";
 
 // Props for the PassengerForm component
@@ -16,13 +16,13 @@ type PassengerFormProps = {
 export default function PassengerForm({ tripParams }: PassengerFormProps) {
   const router = useRouter();
 
-  const [form, setForm] = useState<PassengerForm>({
+  const [form, setForm] = useState<PassengerData>({
     firstName: "",
     lastName: "",
     phone: "",
   });
 
-  const [errors, setErrors] = useState<Partial<PassengerForm>>({});
+  const [errors, setErrors] = useState<Partial<PassengerData>>({});
 
   // Handle input changes and clear errors for the field
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -33,7 +33,7 @@ export default function PassengerForm({ tripParams }: PassengerFormProps) {
 
   // Validate the form fields and set error messages if validation fails
   function validate(): boolean {
-    const newErrors: Partial<PassengerForm> = {};
+    const newErrors: Partial<PassengerData> = {};
 
     if (!form.firstName.trim()) newErrors.firstName = "First name is required";
 

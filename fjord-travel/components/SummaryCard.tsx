@@ -13,8 +13,7 @@ import {
   CheckCircle,
 } from "lucide-react";
 import type { SummaryCardProps } from "@/lib/types";
-import { formatDateToDisplay } from "@/lib/utils";
-import { formatDuration } from "@/lib/utils";
+import { formatDateToDisplay, formatDuration } from "@/lib/utils";
 
 export default function SummaryCard({
   from,

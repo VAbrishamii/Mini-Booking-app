@@ -32,7 +32,7 @@ export type TripParams = {
 };
 
 // The PassengerForm type represents the form data for a passenger
-export type PassengerForm = {
+export type PassengerData = {
   firstName: string;
   lastName: string;
   phone: string;

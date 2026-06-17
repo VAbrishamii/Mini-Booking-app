@@ -6,7 +6,7 @@ import { ChevronDown } from "lucide-react";
 
 type SelectProps = {
   value: string;
-  onChange: (value: string) => void;
+  onChange: (_value: string) => void;
   options: string[];
   placeholder: string;
   icon?: React.ReactNode;

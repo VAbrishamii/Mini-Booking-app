@@ -3,7 +3,7 @@
 
 import { useState } from "react";
 import { CustomSelect } from "@/components/CustomSelect";
-import { useSearchParams } from "next/dist/client/components/navigation";
+import { useSearchParams } from "next/navigation";
 import { MapPinCheck, MapPinHouse } from "lucide-react";
 
 
@@ -12,7 +12,7 @@ const PORTS = ["Bergen", "Stavanger", "Hirtshals", "Kristiansand"];
 
 // Props for the SearchForm component
 type SearchFormProps = {
-  onSearch: (from: string, to: string, date: string) => void;
+  onSearch: (_from: string, _to: string, _date: string) => void;
 };
 
 export default function SearchForm({ onSearch }: SearchFormProps) {
@@ -58,7 +58,7 @@ export default function SearchForm({ onSearch }: SearchFormProps) {
           Arrival
         </label>
         <CustomSelect
-          value={to}
+          value={to}       
           onChange={setTo}
           options={PORTS.filter((p) => p !== from)}
           placeholder="To"
