@@ -1,12 +1,11 @@
 name: Continuous Integration (CI)
 
-# Trigger the workflow on push or pull request events to the main branch
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-
+# This workflow runs on pushes and pull requests to the main branch, ensuring that code changes are tested before being merged.
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
@@ -14,31 +13,27 @@ jobs:
     defaults:
       run:
         working-directory: fjord-travel
-
+    # The job checks out the code, sets up Node.js with caching for npm dependencies, installs dependencies, runs linting and type checking, and builds the Next.js application.
     steps:
-    # Checkout the repository to the GitHub Actions runner
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    # Set up Node.js environment with caching for npm dependencies
+    # Set up Node.js with caching for npm dependencies
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: 20
-        cache: 'npm' # Enable caching for npm dependencies
+        node-version: 22  # Use Node.js 22
+        cache: 'npm'
+        cache-dependency-path: './fjord-travel/package-lock.json' # Cache based on package-lock.json
 
-    # Install project dependencies using npm ci for a clean install
     - name: Install dependencies
       run: npm ci
 
-    # Run tests using ESLint to check for code quality and style issues
     - name: Run ESLint (Linting)
       run: npm run lint
 
-    # Run TypeScript type checking to ensure there are no type errors
     - name: Run TypeScript Typecheck
       run: npx tsc --noEmit
 
-    # Build the Next.js application to ensure it compiles successfully
     - name: Build Next.js application
       run: npm run build
