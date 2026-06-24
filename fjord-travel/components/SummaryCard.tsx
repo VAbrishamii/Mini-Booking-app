@@ -30,12 +30,12 @@ export default function SummaryCard({
 }: SummaryCardProps) {
   const router = useRouter();
 
-
   // Handle continue button click, validate the form and navigate to summary page .
   function handleConfirm() {
+    sessionStorage.removeItem("passengerDetails");
     router.push("/bookingSuccess");
   }
-  
+
   // Handle back button click
   function handleBack() {
     router.push(

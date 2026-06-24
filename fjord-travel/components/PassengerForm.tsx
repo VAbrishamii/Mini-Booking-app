@@ -2,7 +2,7 @@
 // This component renders a form for entering passenger details and validates the input before allowing the user to continue.
 // It also includes navigation buttons to go back to the results page or continue to the summary page.
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, ArrowRight, User, Phone } from "lucide-react";
 import type { PassengerData, TripParams } from "@/lib/types";
@@ -23,6 +23,20 @@ export default function PassengerForm({ tripParams }: PassengerFormProps) {
   });
 
   const [errors, setErrors] = useState<Partial<PassengerData>>({});
+
+  useEffect(() => {
+    const savedPassenger = sessionStorage.getItem("passengerDetails");
+    if (savedPassenger) {
+      try {
+        setForm(JSON.parse(savedPassenger));
+      } catch (error) {
+        console.error(
+          "Error parsing passenger details from sessionStorage:",
+          error,
+        );
+      }
+    }
+  }, []);
 
   // Handle input changes and clear errors for the field
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -52,11 +66,15 @@ export default function PassengerForm({ tripParams }: PassengerFormProps) {
   // Handle continue button click, validate the form and navigate to summary page .
   function handleContinue() {
     if (!validate()) return;
-    const summaryParams = new URLSearchParams({
-      ...tripParams,
+    const passengerData = {
       firstName: form.firstName,
       lastName: form.lastName,
       phone: form.phone,
+    };
+    sessionStorage.setItem("passengerDetails", JSON.stringify(passengerData));
+
+    const summaryParams = new URLSearchParams({
+      ...tripParams,
     });
     router.push(`/summary?${summaryParams}`);
   }
@@ -75,7 +93,7 @@ export default function PassengerForm({ tripParams }: PassengerFormProps) {
         Passenger Details
       </h1>
       <p className="text-gray-500 mb-8">
-        {tripParams.from} → {tripParams.to} 
+        {tripParams.from} → {tripParams.to}
         {formatDateToDisplay(tripParams.date)}
       </p>
 

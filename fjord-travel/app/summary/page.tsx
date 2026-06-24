@@ -1,5 +1,5 @@
 "use client";
-import { use } from "react";
+import { use, useState } from "react";
 import SummaryCard from "@/components/SummaryCard";
 
 export default function SummaryPage({
@@ -14,12 +14,30 @@ export default function SummaryPage({
     dur: string;
     price: string;
     operator: string;
-    firstName: string;
-    lastName: string;
-    phone: string;
   }>;
 }) {
   const params = use(searchParams);
+
+  const [passenger] = useState<{
+    firstName: string;
+    lastName: string;
+    phone: string;
+  }>(() => {
+    if (typeof window !== "undefined") {
+      const savedPassenger = sessionStorage.getItem("passengerDetails");
+      if (savedPassenger) {
+        try {
+          return JSON.parse(savedPassenger);
+        } catch (error) {
+          console.error(
+            "Error parsing passenger details from sessionStorage:",
+            error,
+          );
+        }
+      }
+    }
+    return { firstName: "", lastName: "", phone: "" };
+  });
 
   return (
     <SummaryCard
@@ -31,9 +49,9 @@ export default function SummaryPage({
       dur={params.dur}
       price={params.price}
       operator={params.operator}
-      firstName={params.firstName}
-      lastName={params.lastName}
-      phone={params.phone}
+      firstName={passenger.firstName}
+      lastName={passenger.lastName}
+      phone={passenger.phone}
     />
   );
 }
