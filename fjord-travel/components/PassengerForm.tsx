@@ -2,7 +2,7 @@
 // This component renders a form for entering passenger details and validates the input before allowing the user to continue.
 // It also includes navigation buttons to go back to the results page or continue to the summary page.
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, ArrowRight, User, Phone } from "lucide-react";
 import type { PassengerData, TripParams } from "@/lib/types";
