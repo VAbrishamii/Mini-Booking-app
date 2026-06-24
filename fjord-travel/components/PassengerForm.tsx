@@ -16,27 +16,24 @@ type PassengerFormProps = {
 export default function PassengerForm({ tripParams }: PassengerFormProps) {
   const router = useRouter();
 
-  const [form, setForm] = useState<PassengerData>({
-    firstName: "",
-    lastName: "",
-    phone: "",
+  const [form, setForm] = useState<PassengerData>(() => {
+    if (typeof window !== "undefined") {
+      const savedPassenger = sessionStorage.getItem("passengerDetails");
+      if (savedPassenger) {
+        try {
+          return JSON.parse(savedPassenger);
+        } catch (error) {
+          console.error(
+            "Error parsing passenger details from sessionStorage:",
+            error,
+          );
+        }
+      }
+    }
+    return { firstName: "", lastName: "", phone: "" };
   });
 
   const [errors, setErrors] = useState<Partial<PassengerData>>({});
-
-  useEffect(() => {
-    const savedPassenger = sessionStorage.getItem("passengerDetails");
-    if (savedPassenger) {
-      try {
-        setForm(JSON.parse(savedPassenger));
-      } catch (error) {
-        console.error(
-          "Error parsing passenger details from sessionStorage:",
-          error,
-        );
-      }
-    }
-  }, []);
 
   // Handle input changes and clear errors for the field
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
